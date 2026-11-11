@@ -4,10 +4,10 @@
   "position": {
     "x": 1134.4548286604361,
     "y": 151.5264797507788,
-    "z": 1,
+    "z": 1000,
     "height": 181.43302180685359,
     "width": 388.78504672897196,
-    "tabOrder": 1
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -114,23 +114,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "f92bb5311ce7a0006bc7",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Medidas"
-              }
-            },
-            "Property": "Quantidade Total"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

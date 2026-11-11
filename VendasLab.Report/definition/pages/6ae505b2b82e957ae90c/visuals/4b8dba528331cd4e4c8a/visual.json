@@ -4,10 +4,10 @@
   "position": {
     "x": 503.32480818414325,
     "y": 495.95907928388749,
-    "z": 2,
+    "z": 2000,
     "height": 441.94373401534529,
     "width": 910.89514066496167,
-    "tabOrder": 2
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "clusteredColumnChart",
@@ -214,37 +214,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "94f53701aa598504e332",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Vendas"
-              }
-            },
-            "Property": "Produto"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "c51086b7700d0cd8e698",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Medidas"
-              }
-            },
-            "Property": "Receita Total"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -16,6 +16,20 @@ table Medidas
 		formatString: 0
 		lineageTag: 4ecbedda-ddf1-4831-a09b-4a0a706f4bf7
 
+	measure 'Custo Total' =
+			
+			SUMX(Vendas, Vendas[Quantidade] * Vendas[CustoUnitario])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: ea367954-744c-4a69-a7ea-8038e873c1b5
+
+	measure 'Lucro Total' = [Receita Total] - [Custo Total]
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: d59e98a5-a119-4df7-848f-62ccb499a162
+
+	measure 'Margem Percentual' = DIVIDE([Lucro Total], [Receita Total])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b1b593db-531a-4261-8ba7-64def25f3106
+
 	column Column
 		formatString: 0
 		lineageTag: eaec385d-d191-41e7-a9a5-ed3bfe732fa7

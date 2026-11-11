@@ -1,0 +1,14 @@
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+**/.pbi/unappliedChanges.json
+*.pbix
+*.pbit
+~$*
+*.tmp
+.env
+.env.*
+credenciais/
+dados-privados/
+*.xlsx
+*.xls
+*.xlsm

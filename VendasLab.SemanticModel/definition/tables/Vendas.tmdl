@@ -1,0 +1,109 @@
+table Vendas
+	lineageTag: 3b4db34b-1b6a-453c-8671-a1607bcaff6e
+
+	column PedidoID
+		dataType: string
+		lineageTag: d5a23a12-b196-4ea4-81ca-400519cc1de5
+		summarizeBy: none
+		sourceColumn: PedidoID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7f70c8a2-b1cb-4b3c-a839-58da42a402cf
+		summarizeBy: none
+		sourceColumn: Data
+
+		variation Variação
+			isDefault
+			relationship: 45fa106d-6f9f-4727-95e0-5d40c1709263
+			defaultHierarchy: LocalDateTable_a0f3cf10-7607-4fcd-8767-6efdef25e973.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Produto
+		dataType: string
+		lineageTag: 4f2aaa63-96ec-4e89-99ce-3de80f47faa2
+		summarizeBy: none
+		sourceColumn: Produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Categoria
+		dataType: string
+		lineageTag: 8ce3dda8-40a0-4b77-85c0-f92715798a7c
+		summarizeBy: none
+		sourceColumn: Categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column Regiao
+		dataType: string
+		lineageTag: 0eab6892-97d0-4839-836d-de232edb18ef
+		summarizeBy: none
+		sourceColumn: Regiao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Canal
+		dataType: string
+		lineageTag: c50546cd-4d3c-43d6-b02f-aff53ddbdc19
+		summarizeBy: none
+		sourceColumn: Canal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantidade
+		dataType: int64
+		formatString: 0
+		lineageTag: 49221cec-e01e-445b-a47d-f3a2c9411586
+		summarizeBy: sum
+		sourceColumn: Quantidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrecoUnitario
+		dataType: int64
+		formatString: 0
+		lineageTag: 979a6ee8-3c3c-4895-aac9-3ba17e5b2c57
+		summarizeBy: sum
+		sourceColumn: PrecoUnitario
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustoUnitario
+		dataType: int64
+		formatString: 0
+		lineageTag: 0344f1c0-4b78-4565-92af-e66139406bde
+		summarizeBy: sum
+		sourceColumn: CustoUnitario
+
+		annotation SummarizationSetBy = Automatic
+
+	column DescontoPct
+		dataType: double
+		lineageTag: c102a65e-e8a8-4655-b6af-5bae26dbe884
+		summarizeBy: sum
+		sourceColumn: DescontoPct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Vendas = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\LabPowerBI\dados\vendas_ficticias.xlsx"), null, true),
+				    Vendas_Sheet = Fonte{[Item="Vendas",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Vendas_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"PedidoID", type text}, {"Data", type datetime}, {"Produto", type text}, {"Categoria", type text}, {"Regiao", type text}, {"Canal", type text}, {"Quantidade", Int64.Type}, {"PrecoUnitario", Int64.Type}, {"CustoUnitario", Int64.Type}, {"DescontoPct", type number}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

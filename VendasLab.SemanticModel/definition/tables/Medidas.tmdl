@@ -1,0 +1,35 @@
+table Medidas
+	lineageTag: 4ac86552-be9d-4e24-9191-edcaf1bf5841
+
+	measure 'Receita Total' =
+			
+			SUMX(
+			 Vendas,
+			 Vendas[Quantidade] * Vendas[PrecoUnitario]
+			 * (1 - Vendas[DescontoPct])
+			)
+		lineageTag: 8cf67e9f-ccb2-42a6-a2fc-1e079363ca1e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Quantidade Total' = SUM(Vendas[Quantidade])
+		formatString: 0
+		lineageTag: 4ecbedda-ddf1-4831-a09b-4a0a706f4bf7
+
+	column Column
+		formatString: 0
+		lineageTag: eaec385d-d191-41e7-a9a5-ed3bfe732fa7
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = b5f84e9d40e84cc7b2aaab0cea462b99
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

@@ -12,7 +12,7 @@ table Medidas
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Quantidade Total' = SUM(Vendas[Quantidade])
+	measure 'Quantidade Total' = SUM(Vendas[Quantidade]) + 1
 		formatString: 0
 		lineageTag: 4ecbedda-ddf1-4831-a09b-4a0a706f4bf7
 
